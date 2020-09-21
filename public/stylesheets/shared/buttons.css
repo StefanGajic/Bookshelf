@@ -1,0 +1,39 @@
+
+.btn {
+    border: 1px solid;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .btn-row {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .btn-row > * {
+    margin-left: 1rem;
+  }
+  
+  .btn-row > *:first-child {
+    margin-left: 0;
+  }
+  
+  .btn-primary {
+    background-color: lightseagreen;
+  }
+  
+  .btn-primary:hover {
+    background-color: cyan;
+  }
+  
+  .btn-danger {
+    background-color: red;
+  }
+  
+  .btn-danger:hover {
+    background-color: lightcoral;
+  }

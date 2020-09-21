@@ -1,0 +1,19 @@
+<% if (user) { %> Hi <%= user.name %> <% } %>
+
+<h2 class="page-header">Recent Books</h2>
+
+<div>
+  <br />
+  <% books.forEach(book => { %>
+  <a href="/books/<%= book.id %> ">
+    <img height="150" width="100" src="<%= book.coverImagePath %>" />
+  </a>
+  <% }) %>
+</div>
+<br>
+
+<% if (!user) { %> <%- include('login') %> <% } %> <% if (user) { %>
+<form action="/logout?_method=DELETE" method="POST">
+  <button class="btn btn-danger" type="submit">Log Out</button>
+</form>
+<% } %>
