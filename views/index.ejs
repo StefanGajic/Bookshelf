@@ -1,4 +1,11 @@
 <% if (user) { %> Hi <%= user.name %> <% } %>
+<p>Connected To AWS
+<% if (successfullyCalledAws) { %>
+  <i class="fa fa-check" aria-hidden="true"></i>
+  <% } else { %>
+  <i class="fa fa-times" aria-hidden="true"></i>
+  <% } %>
+</p>
 
 <h2 class="page-header">Recent Books</h2>
 

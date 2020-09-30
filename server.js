@@ -19,6 +19,7 @@ initializePassport(
   (email) => UserDB.findOne({ email: email }).exec(),
   (id) => UserDB.findById(id).exec()
 );
+const fetch = require('node-fetch');
 const authorRouter = require("./routes/authors");
 const bookRouter = require("./routes/books");
 
@@ -91,12 +92,28 @@ app.delete("/logout", (req, res) => {
 });
 
 app.get("/", async (req, res) => {
+  let successfullyCalledAws = false
+
+  try {
+    let data = await callAWS();
+    console.log(data)
+
+    async function callAWS() {
+      let response = await fetch('https://5jc8u4oh39.execute-api.us-east-2.amazonaws.com/production/', { timeout: 1000 })
+      console.log(response.text())
+      successfullyCalledAws = true
+      return response.text()
+  }
+  } catch (e) {
+      console.log(e)
+  }
+ 
   try {
     books = await Book.find().sort({ createdAt: "desc" }).limit(10).exec();
   } catch {
     books = [];
   }
-  res.render("index", { books: books, user: req.user });
+  res.render("index", { books: books, user: req.user, successfullyCalledAws: successfullyCalledAws });
 });
 
 app.listen(process.env.PORT || 3000);
